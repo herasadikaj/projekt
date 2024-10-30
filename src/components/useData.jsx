@@ -1,4 +1,4 @@
- import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const useData = () => {
   const [formData, setFormData] = useState(() => {
@@ -19,20 +19,26 @@ const useData = () => {
       return updatedData;
     });
   };
+
   const resetFormData = () => {
-    setFormData({
+    const initialData = {
       name: '',
       surname: '',
       age: '',
       gender: '',
       companyName: '',
       companyCode: '',
-    });
-    localStorage.clear();
+    };
+    setFormData(initialData);
+    localStorage.setItem('formData', JSON.stringify(initialData));
   };
+
+
+  useEffect(() => {
+    localStorage.setItem('formData', JSON.stringify(formData));
+  }, [formData]);
 
   return { formData, updateField, resetFormData };
 };
-
 
 export default useData;
