@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 
+const initialData = {
+  name: '',
+  surname: '',
+  age: '',
+  gender: '',
+  companyName: '',
+  companyCode: '',
+};
+
 const useData = () => {
   const [formData, setFormData] = useState(() => {
-    return JSON.parse(localStorage.getItem('formData')) || {
-      name: '',
-      surname: '',
-      age: '',
-      gender: '',
-      companyName: '',
-      companyCode: '',
-    };
+    return JSON.parse(localStorage.getItem('formData')) || initialData
+
   });
 
   const updateField = (field, value) => {
@@ -21,16 +24,8 @@ const useData = () => {
   };
 
   const resetFormData = () => {
-    const initialData = {
-      name: '',
-      surname: '',
-      age: '',
-      gender: '',
-      companyName: '',
-      companyCode: '',
-    };
     setFormData(initialData);
-    localStorage.setItem('formData', JSON.stringify(initialData));
+    localStorage.clear()
   };
 
 

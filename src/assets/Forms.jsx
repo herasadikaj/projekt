@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import useData from './useData';
-function Form() {
+function Forms() {
   const [step, setStep] = useState(1);
 
   const { formData, updateField } = useData();
@@ -59,4 +59,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default Forms;

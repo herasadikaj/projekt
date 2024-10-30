@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
 import useData from './useData';
+import './style.css';
 
 const Form = () => {
-  const [step, setStep] = useState(1);
+  const savedStep = JSON.parse(localStorage.getItem('currentStep')) || 1;
+  const [step, setStep] = useState(savedStep);
   const [submitted, setSubmitted] = useState(false);
   const { formData, updateField, resetFormData } = useData();
 
@@ -21,11 +23,18 @@ const Form = () => {
     resetFormData();
     setSubmitted(false);
     setStep(1);
+    localStorage.removeItem('currentStep'); 
+    localStorage.removeItem('formData')
   };
 
   const handleEdit = () => {
     setSubmitted(false);
   };
+
+
+  useEffect(() => {
+    localStorage.setItem('currentStep', JSON.stringify(step));
+  }, [step]);
 
   if (submitted) {
     return (

@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import './style.css';
 
 const Form2 = ({ formData, updateField, nextStep, prevStep }) => (
   <>
+  <h2>Step 2</h2>
   <label>Age: </label>
     <input
       type="text"
